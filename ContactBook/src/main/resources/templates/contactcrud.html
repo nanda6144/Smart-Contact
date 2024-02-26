@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
+		integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+		integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script src="https://kit.fontawesome.com/1cf483120b.js" crossorigin="anonymous"></script>
+
+	<style>
+		/* Importing Google font - Open Sans */
+		@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+
+
+		body {
+			height: 100vh;
+			width: 100%;
+			background: linear-gradient(to bottom, #175d69 23%, #330c43 95%);
+		}
+
+
+
+
+		.search-container {
+			position: static;
+			color: cornsilk;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="w3-top">
+		<div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+			<a th:href="@{/backs}" class="w3-bar-item w3-button">Back</a>
+
+
+
+
+			<!-- Right-sided navbar links. Hide them on small screens -->
+			<div class="w3-right w3-hide-small">
+				<a th:href="@{/delete}" class="btn btn-info btn-lg">
+					<span class="glyphicon glyphicon-log-out"></span> Logout</a>
+			
+						</div>
+		</div>
+	</div>
+	<br>
+	<br>
+
+
+
+	<div class="container my-1">
+		<div class="search-container my-4">
+			<form th:action="@{/searchContacts}">
+				<div style="text-align: right;">
+					<input id="search-input" name="prefix" type="text" placeholder="search your Contacts">
+					<button class="icon"><i class="fa fa-search"></i></button>
+					<!--<input type="submit" value="search" />-->
+					<div class="search-result">
+					</div>
+			</form>
+		</div>
+	</div>
+	<!--<input type="text" placeholder="Search here">
+        <button class="btn">Search</button>-->
+
+
+	<div class="card-body" style="color:ghostwhite;">
+		<h1><b>All Contacts</b></h1>
+	</div>
+	<!--<a th:href = "@{/add}" class="btn btn-primary btn-sm mb-3"> Add Contact </a>
+	-->
+
+	<table border="1" class="table table-dark">
+		<thead>
+			<tr>
+				<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
+						Contact Name</a>
+				</th>
+				<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
+						Github username</a>
+				</th>
+
+				<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=phoneNumber&sortDir=' + ${reverseSortDir}}">
+						Contact Phone Number</a>
+				</th>
+				<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
+						Contact Email</a>
+				</th>
+				<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=relation&sortDir=' + ${reverseSortDir}}">
+						Contact Relation</a>
+				</th>
+
+				<th> Actions </th>
+				<th>Others</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="contact : ${contacts}">
+				<td> <a th:href="@{/showFormForUpdate/{cid}(cid=${contact.cId})}" th:text="${contact.cName}" /></td>
+				<td th:text="${contact.nName}"></td>
+				<td th:text="${contact.cPhoneNumber}"></td>
+				<td><a href="https://outlook.office.com/mail/" th:text="${contact.cEmail}">
+						<iclass="fa fa-envelope"></i></td>
+				<td th:text="${contact.relation}"></td>
+				<td> <!--<a th:href="@{/showFormForUpdate/{cid}(cid=${contact.cId})}" class="btn btn-primary">Update<i class="fa-solid fa-user-pen"></i></a>
+					   --> <a th:href="@{/deleteEmployee/{cid}(cid=${contact.cId})}" class="btn btn-danger">Delete<i
+							class="fa-solid fa-user-xmark"></i></a>
+				</td>
+				<td>
+					<a target="_blank"
+						th:href="'https://api.whatsapp.com/send?phone=' + ${contact.cPhoneNumber} + '&text=hello,How are you doing?'"
+						class="whatsapp-button">
+						<i class="fab fa-whatsapp"></i></a>
+
+
+
+					<a target="_blank" th:href="'https://github.com/' + ${contact.nName}" class="github-button">
+						<i class="fab fa-github"></i></a>
+
+					<a target="_blank" th:href="'https://linkedin.com/in/' + ${contact.nName}" class="linkedin-button">
+						<i class="fab fa-linkedin"></i></a>
+						
+						
+
+
+				</td>
+
+			</tr>
+		</tbody>
+	</table>
+
+	<div th:if="${totalPages > 1}">
+		<div class="row col-sm-10">
+			<div class="col-sm-2">
+				Total Rows: [[${totalItems}]]
+			</div>
+			<div class="col-sm-1">
+				<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+					<a th:if="${currentPage != i}"
+						th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+					<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+				</span>
+			</div>
+			<div class="col-sm-1">
+				<a th:if="${currentPage < totalPages}"
+					th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+				<span th:unless="${currentPage < totalPages}">Next</span>
+			</div>
+
+			<div class="col-sm-1">
+				<a th:if="${currentPage < totalPages}"
+					th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+				<span th:unless="${currentPage < totalPages}">Last</span>
+			</div>
+		</div>
+	</div>
+
+	</div>
+	</div>
+
+</body>
+
+</html>

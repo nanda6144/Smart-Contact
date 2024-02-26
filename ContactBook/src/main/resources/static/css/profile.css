@@ -1,0 +1,18 @@
+
+body{
+    	
+	background-image: url("https://media.istockphoto.com/id/1371966433/photo/black-carbon-fiber-motion-background-technology-wavy-line-with-red-glowing-light-3d.jpg?s=612x612&w=0&k=20&c=UzO-WwX8zcTiYr3_jTNii1Y2aeVtM9JcJYZKrX9Bxy4=");
+	background-repeat: no-repeat;
+	background-attachment: fixed;  
+	background-size: cover;
+  }
+.gradient-custom {
+/* fallback for old browsers */
+background: #f6d365;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+}

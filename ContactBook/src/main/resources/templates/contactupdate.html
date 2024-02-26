@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Update Contact</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
+		integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+		integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script src="https://kit.fontawesome.com/1cf483120b.js" crossorigin="anonymous"></script>
+
+	<style>
+		/* Importing Google font - Open Sans */
+		@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+
+
+		body {
+			height: 100vh;
+			width: 100%;
+			background: linear-gradient(to bottom, #175d69 23%, #330c43 95%);
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="w3-top">
+		<div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+			<a th:href="@{/showContacts}" class="w3-bar-item w3-button">Back</a>
+
+			<!-- Right-sided navbar links. Hide them on small screens -->
+			<div class="w3-right w3-hide-small">
+				<a th:href="@{/delete}" class="btn btn-info btn-lg">
+					<span class="glyphicon glyphicon-log-out"></span> Logout</a>
+			
+							</div>
+		</div>
+	</div>
+
+	<br>
+
+	<div class="container my-3">
+		<div class="row">
+			<div class="col-md-8 mx-auto">
+
+				<form th:action="@{/addCont}" th:object="${contact}" method="post">
+					<div class="card-body" style="color:whitesmoke;">
+						<legend class="text-center header"><b>Update Contact</b></legend>
+					</div>
+
+					<!-- Add hidden form field to handle update -->
+					<div class="form-row">
+						<input type="hidden" th:field="*{cId}" />
+					</div>
+					<div class="form-row">
+						<div class="col-md-6 form group">
+							<label></label>
+							<input th:field="*{cName}" type="text" placeholder="Contact Name" class="form-control">
+						</div>
+
+
+						<div class="col-md-6 form group">
+							<label></label>
+
+							<input th:field="*{nName}" type="text" placeholder="Github/Linkedin username"
+								class="form-control">
+						</div>
+
+
+
+						<div class="col-md-6 form group">
+							<label></label>
+							<input th:field="*{cPhoneNumber}" type="tel" placeholder="Phone" class="form-control">
+						</div>
+
+
+
+						<div class="col-md-6 form group">
+							<label></label>
+							<input type="text" th:field="*{cEmail}" placeholder="Email Address" class="form-control">
+						</div>
+
+
+
+						<div class="col-md-6 form group">
+							<label></label>
+							<input th:field="*{birthDay}" type="date" class="form-control">
+						</div>
+
+
+
+
+
+						<div class="col-md-6 form group">
+							<label></label>
+							<select class="form-control" th:field="*{relation}">
+								<option value="">Type of Contact...</option>
+								<option value="Friend">Friend</option>
+								<option value="Family">Family</option>
+								<option value="Others">Others</option>
+							</select>
+						</div>
+
+
+						<div class="form-group">
+							<input type="hidden" field="*{cuid}">
+						</div>
+						<br>
+
+
+
+
+
+
+						<div class="form-group">
+							<div class="col-md-12 text-center">
+								<br>
+								<button type="Update" class="btn btn-primary btn-lg">Update</button>
+							</div>
+						</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
